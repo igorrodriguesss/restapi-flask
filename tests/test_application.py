@@ -7,27 +7,26 @@ class TestApplication():
     @pytest.fixture
     def client(self):
         app = create_app('config.MockConfig')
-        yield app.test_client()
+        return app.test_client()
 
     @pytest.fixture
     def valid_user(self):
         return {
             "first_name": "Igor",
             "last_name": "Rodrigues",
-            "cpf": "575.514.350-18",
+            "cpf": "517.799.698-05",
             "email": "igorr2693@gmail.com",
-            "birth_date": "2002-04-23",
+            "birth_date": "2002-04-23"
         }
-    
 
     @pytest.fixture
     def invalid_user(self):
         return {
             "first_name": "Igor",
             "last_name": "Rodrigues",
-            "cpf": "575.514.350-12",
+            "cpf": "517.799.698-03",
             "email": "igorr2693@gmail.com",
-            "birth_date": "2002-04-23",
+            "birth_date": "2002-04-23"
         }
 
     def test_get_users(self, client):
@@ -42,3 +41,18 @@ class TestApplication():
         response = client.post('/user', json=invalid_user)
         assert response.status_code == 400
         assert b"invalid" in response.data
+
+    def test_get_user(self, client, valid_user, invalid_user):
+        response = client.get('/user/%s' % valid_user["cpf"])
+        assert response.status_code == 200
+        assert response.json[0]["first_name"] == "Igor"
+        assert response.json[0]["last_name"] == "Rodrigues"
+        assert response.json[0]["cpf"] == "517.799.698-05"
+        assert response.json[0]["email"] == "igorr2693@gmail.com"
+
+        birth_date = response.json[0]["birth_date"]["$date"]
+        assert birth_date == "2002-04-23T00:00:00Z"
+
+        response = client.get('/user/%s' % invalid_user["cpf"])
+        assert response.status_code == 400
+        
