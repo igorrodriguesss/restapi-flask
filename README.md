@@ -4,13 +4,13 @@
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-Este projeto é uma API REST construída com **Flask**, persistindo dados em **MongoDB**, e preparada para deploy utilizando **Docker** e **Render**. Conta também com testes, linting e pipeline CI/CD com **GitHub Actions**.
+Este projeto é uma API REST construída com **Flask**, persistindo dados em **MongoDB Atlas**, e preparada para deploy utilizando **Docker** e **Render**. Conta também com testes, linting e pipeline CI/CD com **GitHub Actions**.
 
 ## 🔧 Tecnologias
 
 - Linguagem: **Python 3.9+**
 - Framework web: **Flask**
-- Banco de dados: **MongoDB**
+- Banco de dados: **MongoDB Atlas** (MongoDB em nuvem)
 - Testes: **pytest**
 - Linting: **flake8**
 - CI/CD: **GitHub Actions**
@@ -30,6 +30,19 @@ Este projeto é uma API REST construída com **Flask**, persistindo dados em **M
 docker-compose build
 docker-compose up
 # A API ficará acessível em: http://localhost:5000
+```
+
+## 🌐 Configuração da conexão com MongoDB Atlas
+
+Se você estiver utilizando **MongoDB Atlas**, certifique-se de:
+
+1. Criar um cluster no https://www.mongodb.com/cloud/atlas
+2. Adicionar seu IP ou `0.0.0.0/0` nas regras de acesso (Network Access)
+3. Criar um usuário de banco com senha
+4. Utilizar a **connection string URI** no seu `.env` ou diretamente no `docker-compose.yml`, por exemplo:
+
+```env
+MONGO_URI=mongodb+srv://<usuario>:<senha>@<cluster>.mongodb.net/<nome-db>?retryWrites=true&w=majority
 ```
 
 ## 🧪 Testes & Lint
@@ -105,3 +118,8 @@ O deploy **não é automático**. Ele só ocorre quando a pipeline do GitHub Act
 
 Este projeto está sob a licença **MIT** — sinta-se à vontade para usar, editar e distribuir!
 
+## 🤝 Autor
+
+**Igor Rodrigues** — [github.com/igorrodriguesss](https://github.com/igorrodriguesss)
+
+Entre em contato se quiser bater um papo sobre melhorias ou colaborações! 😊
