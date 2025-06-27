@@ -19,7 +19,17 @@ jobs:
     - name: Install Dependencies
       run: | 
         pip install -r requirements.txt
-        pip install pytest flake8 mongomock
-        
+        pip install pytest flake8 mongomock 
     - name: Run tests
       run: make flake
+
+  deploy: 
+    needs: test
+    runs-on: ubuntu-latest
+  
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy to Render
+      if: success()
+      run: |
+        curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
