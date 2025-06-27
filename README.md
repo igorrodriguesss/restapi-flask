@@ -117,9 +117,3 @@ O deploy **não é automático**. Ele só ocorre quando a pipeline do GitHub Act
 ## ✅ Licença
 
 Este projeto está sob a licença **MIT** — sinta-se à vontade para usar, editar e distribuir!
-
-## 🤝 Autor
-
-**Igor Rodrigues** — [github.com/igorrodriguesss](https://github.com/igorrodriguesss)
-
-Entre em contato se quiser bater um papo sobre melhorias ou colaborações! 😊
