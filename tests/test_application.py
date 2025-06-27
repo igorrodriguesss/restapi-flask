@@ -55,4 +55,3 @@ class TestApplication():
 
         response = client.get('/user/%s' % invalid_user["cpf"])
         assert response.status_code == 400
-        
