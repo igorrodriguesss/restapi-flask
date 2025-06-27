@@ -100,11 +100,6 @@ O deploy **não é automático**. Ele só ocorre quando a pipeline do GitHub Act
 
 > ![Arquitetura do projeto](docs/arquitetura.png)
 
-💡 Para adicionar ao seu projeto:
-1. Crie uma pasta `docs/`
-2. Salve a imagem do diagrama com o nome `arquitetura.png` dentro dela
-3. Faça commit/push para aparecer no GitHub
-
 ## ⭐ Melhorias futuras
 
 - Adicionar autenticação JWT  
